@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.liquerstore.AddSupplierViewController">
+   <children>
+      <VBox alignment="CENTER" layoutX="80.0" layoutY="40.0" prefHeight="258.0" prefWidth="192.0" spacing="20.0" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <TextField fx:id="companyIdTextField" promptText="Company Id" />
+            <TextField fx:id="companyNameTextField" promptText="Company Name" />
+            <TextField fx:id="productIdTextField" promptText="Product Id" />
+            <TextField fx:id="priceTextField" promptText="Price" />
+         </children>
+      </VBox>
+      <Button layoutX="134.0" layoutY="312.0" mnemonicParsing="false" onAction="#onSupplierAdded" text="Add Supplier" />
+   </children>
+</AnchorPane>

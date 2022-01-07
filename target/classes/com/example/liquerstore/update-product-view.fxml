@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="352.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" prefHeight="184.0" prefWidth="100.0" spacing="20.0" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <TextField fx:id="ProductIdTextField" promptText="Product id" />
+            <TextField fx:id="ProductNameTextField" promptText="Product name" />
+            <TextField fx:id="CategoryTextField" promptText="Category" />
+            <TextField fx:id="PriceTextField" promptText="Price" />
+            <TextField fx:id="StockTextField" promptText="Stock" />
+         </children>
+      </VBox>
+      <Button layoutX="135.0" layoutY="308.0" mnemonicParsing="false" onAction="#onProductUpdated" text="Update Product" textFill="#140101" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@hello-view.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.liquerstore.HelloController">
+   <children>
+      <TabPane fx:id="tabPane" layoutX="200.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: 255;" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <tabs>
+          <Tab text="Suppliers">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ScrollPane fitToWidth="true" layoutX="32.0" layoutY="125.0" prefHeight="232.0">
+                           <content>
+                              <TableView fx:id="supplierTable" prefHeight="231.0">
+                                <columns>
+                                  <TableColumn fx:id="CompanyId" prefWidth="135.0" resizable="false" text="company id" />
+                                  <TableColumn fx:id="CompanyName" prefWidth="135.0" resizable="false" text="company name" />
+                                    <TableColumn fx:id="ProductId" prefWidth="135.0" resizable="false" text="product id" />
+                                    <TableColumn fx:id="Price" prefWidth="135.0" resizable="false" text="price" />
+                                </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
+                        <GridPane layoutX="382.0" prefHeight="122.0" prefWidth="198.0" AnchorPane.topAnchor="0.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="addSuppliersBtn" mnemonicParsing="false" onAction="#onAddSupplierClicked" text="Add Supplier" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-primary" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass></Button>
+                              <Button fx:id="deleteSuppliersBtn" mnemonicParsing="false" onAction="#onDeleteSupplierClicked" text="Delete Selected" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-danger" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass></Button>
+                              <Button fx:id="editSuppliersBtn" mnemonicParsing="false" onAction="#onUpdateSupplierClicked" text="Edit Selected" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-info" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass></Button>
+                           </children>
+                        </GridPane>
+                        <Button fx:id="refreshSuppliersBtn" layoutX="43.0" layoutY="87.0" mnemonicParsing="false" onAction="#onRefreshSuppliersTableClicked" text="Refresh">
+                           <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="btn-info" />
+                           </styleClass>
+                        </Button>
+                        <HBox alignment="CENTER" layoutX="43.0" layoutY="10.0" spacing="3.0">
+                           <children>
+                              <Label layoutX="43.0" layoutY="10.0" text="Search By:" />
+                              <MenuButton fx:id="supplierSearchByMenu" mnemonicParsing="false" prefWidth="120.0" text="Company Id">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Company Id" />
+                                    <MenuItem mnemonicParsing="false" text="Company Name" />
+                                    <MenuItem mnemonicParsing="false" text="Product Id" />
+                                    <MenuItem mnemonicParsing="false" text="Price" />
+                                 </items>
+                              </MenuButton>
+                           </children>
+                        </HBox>
+                        <Button layoutX="191.0" layoutY="40.0" mnemonicParsing="false" onAction="#onSupplierSearch" text="Search" />
+                        <TextField fx:id="genericSupplierSearchField" layoutX="43.0" layoutY="40.0" prefHeight="24.0" prefWidth="137.0" promptText="Company Id" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Products">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                         <ScrollPane fitToWidth="true" layoutX="32.0" layoutY="125.0" prefHeight="232.0">
+                             <content>
+                                 <TableView fx:id="productTable" prefHeight="231.0">
+                                     <columns>
+                                         <TableColumn fx:id="PProductId" prefWidth="102.0" resizable="false" text="product id" />
+                                         <TableColumn fx:id="PProductName" prefWidth="132.0" resizable="false" text="product name" />
+                                         <TableColumn fx:id="PCategory" prefWidth="102.0" resizable="false" text="category" />
+                                         <TableColumn fx:id="PPrice" prefWidth="102.0" resizable="false" text="price" />
+                                         <TableColumn fx:id="PStock" prefWidth="102.0" resizable="false" text="stock" />
+                                     </columns>
+                                 </TableView>
+                             </content>
+                         </ScrollPane>
+                        <GridPane layoutX="382.0" prefHeight="122.0" prefWidth="198.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="addProductsBtn" layoutX="382.0" mnemonicParsing="false" onAction="#onAddProductClicked" text="Add Product" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-primary" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="deleteProductsBtn" mnemonicParsing="false" onAction="#onDeleteProductClicked" text="Delete Selected" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-danger" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="editProductsBtn" mnemonicParsing="false" onAction="#onUpdateProductClicked" text="Edit Selected" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-info" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <Button fx:id="refreshProductsBtn" layoutX="43.0" layoutY="87.0" mnemonicParsing="false" onAction="#onRefreshProductsTableClicked" text="Refresh">
+                           <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="btn-info" />
+                           </styleClass>
+                        </Button>
+                        <TextField fx:id="genericProductSearchField" layoutX="43.0" layoutY="40.0" prefHeight="24.0" prefWidth="137.0" promptText="Product Id" />
+                        <Button layoutX="191.0" layoutY="40.0" mnemonicParsing="false" onAction="#onProductSearch" text="Search" />
+                        <HBox alignment="CENTER" layoutX="43.0" layoutY="10.0" spacing="3.0">
+                           <children>
+                              <Label text="Search By:" />
+                              <MenuButton fx:id="productSearchByMenu" mnemonicParsing="false" prefWidth="120.0" text="Product Id">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="Product Id" />
+                                    <MenuItem mnemonicParsing="false" text="Product Name" />
+                                    <MenuItem mnemonicParsing="false" text="Category" />
+                                    <MenuItem mnemonicParsing="false" text="Price" />
+                                    <MenuItem mnemonicParsing="false" text="Stock" />
+                                 </items>
+                              </MenuButton>
+                           </children>
+                        </HBox>
+                        <HBox fx:id="stockBox" alignment="CENTER" layoutX="43.0" layoutY="40.0" spacing="1.0" visible="false">
+                           <children>
+                              <Label text="Stock" />
+                              <MenuButton fx:id="stockMenuButton" mnemonicParsing="false" prefHeight="24.0" prefWidth="60.0" text="=">
+                                 <items>
+                                    <MenuItem mnemonicParsing="false" text="=" />
+                                    <MenuItem mnemonicParsing="false" text="&gt;" />
+                                    <MenuItem mnemonicParsing="false" text="&gt;=" />
+                                    <MenuItem mnemonicParsing="false" text="&lt;" />
+                                    <MenuItem mnemonicParsing="false" text="&lt;=" />
+                                 </items>
+                              </MenuButton>
+                              <TextField fx:id="stockTextField" prefHeight="25.0" prefWidth="51.0" />
+                           </children>
+                        </HBox>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Salesmen">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                         <ScrollPane fitToWidth="true" layoutX="32.0" layoutY="125.0" prefHeight="232.0" AnchorPane.leftAnchor="32.0" AnchorPane.topAnchor="125.0">
+                             <content>
+                                 <TableView fx:id="salesmanTable" prefHeight="231.0">
+                                     <columns>
+                                         <TableColumn fx:id="SSalesmanId" prefWidth="132.0" resizable="false" text="salesman id" />
+                                         <TableColumn fx:id="SName" prefWidth="102.0" resizable="false" text="name" />
+                                         <TableColumn fx:id="SSurname" prefWidth="102.0" resizable="false" text="surname" />
+                                         <TableColumn fx:id="SAge" prefWidth="102.0" resizable="false" text="age" />
+                                         <TableColumn fx:id="SPhone" prefWidth="102.0" resizable="false" text="phone" />
+                                     </columns>
+                                 </TableView>
+                             </content>
+                         </ScrollPane>
+                        <GridPane layoutX="382.0" prefHeight="122.0" prefWidth="198.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="addSalesmenBtn" mnemonicParsing="false" onAction="#onAddSalesmanClicked" text="Add Salesman" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-primary" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="deleteSalesmenBtn" mnemonicParsing="false" onAction="#onDeleteSalesmanClicked" text="Delete Selected" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-danger" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="editSalesmenBtn" mnemonicParsing="false" onAction="#onUpdateSalesmanClicked" text="Edit Selected" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-info" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <Button fx:id="refreshSalesmenBtn" layoutX="43.0" layoutY="87.0" mnemonicParsing="false" onAction="#onRefreshSalesmenTableClicked" text="Refresh">
+                           <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="btn-info" />
+                           </styleClass>
+                        </Button>
+                        <HBox fx:id="ageBox" alignment="CENTER" layoutX="43.0" layoutY="40.0" spacing="1.0" visible="false">
+                           <children>
+                              <Label text="Age" />
+                              <MenuButton fx:id="ageMenuButton" mnemonicParsing="false" prefHeight="24.0" prefWidth="60.0" text="=">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="=" />
+                                  <MenuItem mnemonicParsing="false" text="&gt;" />
+                                    <MenuItem mnemonicParsing="false" text="&gt;=" />
+                                    <MenuItem mnemonicParsing="false" text="&lt;" />
+                                    <MenuItem mnemonicParsing="false" text="&lt;=" />
+                                </items>
+                              </MenuButton>
+                              <TextField fx:id="ageTextField" prefHeight="24.0" prefWidth="48.0" />
+                           </children>
+                        </HBox>
+                        <TextField fx:id="genericSalesmanSearchField" layoutX="43.0" layoutY="40.0" prefHeight="24.0" prefWidth="137.0" promptText="SalesMan Id" />
+                        <HBox alignment="CENTER" layoutX="43.0" layoutY="10.0" spacing="3.0">
+                           <children>
+                              <Label text="Search By:" />
+                              <MenuButton fx:id="salesmanSearchByMenu" mnemonicParsing="false" prefWidth="120.0" text="SalesMan Id">
+                                <items>
+                                  <MenuItem mnemonicParsing="false" text="SalesMan Id" />
+                                  <MenuItem mnemonicParsing="false" text="Age" />
+                                    <MenuItem mnemonicParsing="false" text="Name" />
+                                    <MenuItem mnemonicParsing="false" text="SurName" />
+                                    <MenuItem mnemonicParsing="false" text="Phone" />
+                                </items>
+                              </MenuButton>
+                           </children>
+                        </HBox>
+                        <Button layoutX="191.0" layoutY="40.0" mnemonicParsing="false" onAction="#onSalesmanSearch" text="Search" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Receipts">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                         <ScrollPane fitToWidth="true" layoutX="32.0" layoutY="125.0" prefHeight="232.0">
+                             <content>
+                                 <TableView fx:id="receiptTable" prefHeight="231.0">
+                                     <columns>
+                                         <TableColumn fx:id="RBarcode" prefWidth="70.0" text="barcode" />
+                                         <TableColumn fx:id="RSalesmanId" prefWidth="95.0" text="salesman id" />
+                                         <TableColumn fx:id="RProductId" prefWidth="90.0" text="product id" />
+                                         <TableColumn fx:id="RDate" minWidth="0.0" prefWidth="95.0" text="date" />
+                                    <TableColumn fx:id="RQuantity" minWidth="0.0" text="quantity" />
+                                    <TableColumn fx:id="RTotal_value" minWidth="0.0" prefWidth="110.0" text="total value" />
+                                     </columns>
+                                 </TableView>
+                             </content>
+                         </ScrollPane>
+                        <GridPane layoutX="382.0" prefHeight="122.0" prefWidth="198.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="addReceiptsBtn" mnemonicParsing="false" onAction="#onAddReceiptClicked" text="Add Receipt" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-primary" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="deleteReceiptsBtn" layoutX="382.0" mnemonicParsing="false" onAction="#onDeleteReceiptClicked" text="Delete Selected" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-danger" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                              <Button fx:id="editReceiptsBtn" mnemonicParsing="false" onAction="#onUpdateReceiptClicked" text="Edit Selected" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+                                 <styleClass>
+                                    <String fx:value="btn" />
+                                    <String fx:value="btn-info" />
+                                    <String fx:value="action-btn" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </GridPane>
+                        <Button fx:id="refreshReceiptsBtn" layoutX="43.0" layoutY="87.0" mnemonicParsing="false" onAction="#onRefreshReceiptTableClicked" text="Refresh">
+                           <styleClass>
+                              <String fx:value="btn" />
+                              <String fx:value="btn-info" />
+                           </styleClass>
+                        </Button>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab onSelectionChanged="#onTabSelectionChanged" text="Statistics">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <content>
+                            <AnchorPane maxHeight="300.0" minHeight="200.0" prefHeight="300.0">
+                                 <children>
+                                    <Accordion AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <panes>
+                                        <TitledPane expanded="false" text="Salesman">
+                                          <content>
+                                            <AnchorPane>
+                                                   <children>
+                                                      <HBox alignment="CENTER" layoutX="36.6" layoutY="39.6" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <GridPane maxHeight="140.0" minHeight="140.0" minWidth="200.0">
+                                                              <columnConstraints>
+                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                              </columnConstraints>
+                                                              <rowConstraints>
+                                                                <RowConstraints maxHeight="22.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+                                                                <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                                                <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                                                              </rowConstraints>
+                                                               <children>
+                                                                  <StackPane prefHeight="9.0" prefWidth="230.0" style="-fx-border-width: 1 0 0 0; -fx-border-color: #ccc;" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                                                                     <children>
+                                                                        <Label fx:id="topSellerByRevenueName" styleClass="p" text="No data" StackPane.alignment="CENTER_LEFT" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                                  <Label styleClass="strong" text="Top seller by revenue" />
+                                                                  <Label fx:id="topRevenueLabel" text="200 Euro" GridPane.rowIndex="1">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="19.0" />
+                                                                     </font>
+                                                                     <styleClass>
+                                                                        <String fx:value="h4" />
+                                                                        <String fx:value="text-primary" />
+                                                                        <String fx:value="strong" />
+                                                                     </styleClass>
+                                                                  </Label>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </padding>
+                                                               <styleClass>
+                                                                  <String fx:value="statistics-card-container" />
+                                                                  <String fx:value="panel" />
+                                                               </styleClass>
+                                                            </GridPane>
+                                                            <GridPane maxHeight="140.0" minHeight="140.0" minWidth="200.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints maxHeight="22.0" minHeight="10.0" prefHeight="21.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                               <children>
+                                                                  <Label styleClass="strong" text="Top seller by receipts" />
+                                                                  <Label fx:id="maxCountReceiptsLabel" text="80 Receipts" GridPane.rowIndex="1">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="19.0" />
+                                                                     </font>
+                                                                     <styleClass>
+                                                                        <String fx:value="h4" />
+                                                                        <String fx:value="text-primary" />
+                                                                        <String fx:value="strong" />
+                                                                     </styleClass>
+                                                                  </Label>
+                                                                  <StackPane prefHeight="9.0" prefWidth="230.0" style="-fx-border-width: 1 0 0 0; -fx-border-color: #ccc;" GridPane.rowIndex="2">
+                                                                     <children>
+                                                                        <Label fx:id="TopSellerByRecNameSurname" styleClass="p" text="No data" StackPane.alignment="CENTER_LEFT" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </padding>
+                                                               <styleClass>
+                                                                  <String fx:value="statistics-card-container" />
+                                                                  <String fx:value="panel" />
+                                                               </styleClass>
+                                                            </GridPane>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </TitledPane>
+                                        <TitledPane expanded="false" text="Products">
+                                          <content>
+                                            <AnchorPane>
+                                                   <children>
+                                                      <HBox alignment="CENTER" spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <GridPane maxHeight="160.0" minHeight="160.0" minWidth="250.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints maxHeight="47.0" minHeight="30.0" prefHeight="45.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="45.0" minHeight="29.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="46.0" minHeight="36.0" prefHeight="41.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                               <children>
+                                                                  <Label styleClass="strong" text="Top product by sales" />
+                                                                  <Label fx:id="topSalesProductValue" text="0 Sales" GridPane.rowIndex="1">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="19.0" />
+                                                                     </font>
+                                                                     <styleClass>
+                                                                        <String fx:value="h4" />
+                                                                        <String fx:value="text-primary" />
+                                                                        <String fx:value="strong" />
+                                                                     </styleClass>
+                                                                  </Label>
+                                                                  <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-width: 1 0 0 0; -fx-border-color: #ccc;" GridPane.rowIndex="2">
+                                                                     <children>
+                                                                        <Label fx:id="topSalesProductName" styleClass="p" text="No data" StackPane.alignment="CENTER_LEFT" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </padding>
+                                                               <styleClass>
+                                                                  <String fx:value="statistics-card-container" />
+                                                                  <String fx:value="panel" />
+                                                               </styleClass>
+                                                            </GridPane>
+                                                            <GridPane maxHeight="160.0" minHeight="120.0" minWidth="250.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="46.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                               <children>
+                                                                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+                                                                     <children>
+                                                                        <Label styleClass="strong" text="Top product by category" />
+                                                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                                                           <children>
+                                                                              <TextField fx:id="topProductCategoryField" minWidth="130.0" prefWidth="130.0" promptText="Category" />
+                                                                              <Button mnemonicParsing="false" onAction="#onFindTopProductByCategory" text="Find" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                     </children>
+                                                                  </VBox>
+                                                                  <Label fx:id="topSalesProductByCategoryValue" text="0 Sales" GridPane.rowIndex="1">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="19.0" />
+                                                                     </font>
+                                                                     <styleClass>
+                                                                        <String fx:value="h4" />
+                                                                        <String fx:value="text-primary" />
+                                                                        <String fx:value="strong" />
+                                                                     </styleClass>
+                                                                  </Label>
+                                                                  <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-border-width: 1 0 0 0; -fx-border-color: #ccc;" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+                                                                     <children>
+                                                                        <Label fx:id="topSalesProductByCategoryName" styleClass="p" text="No data" StackPane.alignment="CENTER_LEFT" />
+                                                                     </children>
+                                                                  </StackPane>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </padding>
+                                                               <styleClass>
+                                                                  <String fx:value="statistics-card-container" />
+                                                                  <String fx:value="panel" />
+                                                               </styleClass>
+                                                            </GridPane>
+                                                         </children>
+                                                         <padding>
+                                                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                         </padding>
+                                                      </HBox>
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </TitledPane>
+                                        <TitledPane expanded="false" text="Revenue">
+                                          <content>
+                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <children>
+                                                            <GridPane maxHeight="160.0" minHeight="160.0" minWidth="250.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints maxHeight="70.0" minHeight="30.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                                                  <RowConstraints maxHeight="102.0" minHeight="29.0" prefHeight="102.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                               <children>
+                                                                  <Label styleClass="strong" text="Total Revenue" />
+                                                                  <Label fx:id="totalRevenueValue" text="0 Euro" GridPane.rowIndex="1">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="19.0" />
+                                                                     </font>
+                                                                     <styleClass>
+                                                                        <String fx:value="h4" />
+                                                                        <String fx:value="text-primary" />
+                                                                        <String fx:value="strong" />
+                                                                     </styleClass>
+                                                                  </Label>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                               </padding>
+                                                               <styleClass>
+                                                                  <String fx:value="statistics-card-container" />
+                                                                  <String fx:value="panel" />
+                                                               </styleClass>
+                                                            </GridPane>
+                                                         </children>
+                                                      </HBox>
+                                                   </children></AnchorPane>
+                                          </content>
+                                        </TitledPane>
+                                      </panes>
+                                    </Accordion>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </padding>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

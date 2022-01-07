@@ -1,0 +1,11 @@
+.statistics-card-container {
+    -fx-border-width: 1;
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 2, 0.5, 1, 1);
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 14;
+}
+
+.action-btn {
+    -fx-pref-width: 180;
+}
