@@ -6,20 +6,27 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.util.ArrayList;
 
+/* Database class handles every interaction with the database. Below we present simple and complex */
+/* queries concerning the four tables of sales database */
 public class Database {
     private Connection con;
     private double topRevenue;
     private int maxCountReceipts;
 
+    /* create connection with the database hosted on server */
     public Database() {
         try {
-            con = DriverManager.getConnection("jdbc:mysql://45.77.137.230:3306/liquer_store?autoReconnect=true", "dimi1", "makaronia2@");
+            con = DriverManager.getConnection("jdbc:mysql://45.77.137.230:3306/liquer_store?autoReconnect=true", "****", "*********");
             Statement statement = con.createStatement();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    /* Display queries return the entire table. Each table is presented by a tableView in the corresponding */
+    /* tab. */
+
     public ObservableList<Salesman> displaySalesman() {
         ResultSet resultSet;
         //Declare a observable List which comprises of Suppliers objects
@@ -128,6 +135,7 @@ public class Database {
         return null;
     }
 
+    /* Update queries are used to update a record in the corresponding table */
     public int updateSupplier(Supplier supplier) {
         try {
             Statement statement = con.createStatement();
@@ -145,6 +153,7 @@ public class Database {
         return 0;
     }
 
+    /* Add a new supplier to the database*/
     public int insertSupplier(Supplier supplier) {
         try {
             Statement statement = con.createStatement();
@@ -159,6 +168,7 @@ public class Database {
         return 0;
     }
 
+    /* Remove a supplier from the database*/
     public int deleteSupplier(Supplier supplier) {
         try {
             Statement statement = con.createStatement();
@@ -171,6 +181,7 @@ public class Database {
         return 0;
     }
 
+    /* Update queries are used to update a record in the corresponding table */
     public int updateProduct(Product product) {
         try {
             Statement statement = con.createStatement();
@@ -189,6 +200,7 @@ public class Database {
         return 0;
     }
 
+    /* Add a new product to the database*/
     public int insertProduct(Product product) {
         try {
             Statement statement = con.createStatement();
@@ -202,6 +214,8 @@ public class Database {
         }
         return 0;
     }
+
+    /* Remove a product from the database*/
     public int deleteProduct(Product product) {
         try {
             Statement statement = con.createStatement();
@@ -214,6 +228,7 @@ public class Database {
         return 0;
     }
 
+    /* Update queries are used to update a record in the corresponding table */
     public int updateSalesman(Salesman salesman) {
         try {
             Statement statement = con.createStatement();
@@ -232,6 +247,7 @@ public class Database {
         return 0;
     }
 
+    /* Add a new salesman to the database*/
     public int insertSalesman(Salesman salesman) {
         try {
             Statement statement = con.createStatement();
@@ -246,6 +262,7 @@ public class Database {
         return 0;
     }
 
+    /* Remove a salesman from the database*/
     public int deleteSalesman(Salesman salesman) {
         try {
             Statement statement = con.createStatement();
@@ -257,6 +274,7 @@ public class Database {
         return 0;
     }
 
+    /* Update queries are used to update a record in the corresponding table */
     public int updateReceipt(Receipt receipt) {
         try {
             Statement statement = con.createStatement();
@@ -276,6 +294,7 @@ public class Database {
         return 0;
     }
 
+    /* Add a new receipt to the database*/
     public int insertReceipt(Receipt receipt) {
         try {
             Statement statement = con.createStatement();
@@ -290,6 +309,7 @@ public class Database {
         return 0;
     }
 
+    /* Remove a receipt from the database*/
     public int deleteReceipt(Receipt receipt) {
         try {
             Statement statement = con.createStatement();
@@ -301,6 +321,7 @@ public class Database {
         return 0;
     }
 
+    /* Find the top seller by revenue*/
     public ArrayList<String> topSellerbyRevenue() {
         try {
             Statement statement = con.createStatement();
@@ -338,6 +359,7 @@ public class Database {
         return null;
     }
 
+    /* Find the top seller by number of receipts*/
     public String topSellerbyReceiptCount() {
         try {
             Statement statement = con.createStatement();
