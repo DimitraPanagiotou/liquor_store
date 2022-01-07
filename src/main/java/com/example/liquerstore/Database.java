@@ -13,13 +13,12 @@ public class Database {
 
     public Database() {
         try {
-            con = DriverManager.getConnection("jdbc:mysql://45.77.137.230:3306/liquer_store?autoReconnect=true", "****", "******");
+            con = DriverManager.getConnection("jdbc:mysql://45.77.137.230:3306/liquer_store?autoReconnect=true", "dimi1", "makaronia2@");
             Statement statement = con.createStatement();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     public ObservableList<Salesman> displaySalesman() {
         ResultSet resultSet;

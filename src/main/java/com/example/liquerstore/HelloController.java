@@ -22,7 +22,11 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 
-
+/* This class handles every interaction with the main javafx window hello-view.fxml. Hello-view is */
+/* the first opening window that consists of 5 tabs Suppliers, Salesmen, Products, Receipts and    */
+/* Statistics. The first 4 tabs enable basic interactions with the database such as addition,      */
+/* deleteion, update and search by all their attributes. The statistics tab performs more complex  */
+/* queries that aim to present the overall image of the company and how well it functions          */
 public class HelloController {
     private Database db;
 
@@ -136,7 +140,7 @@ public class HelloController {
     private String selectedProductStockComparator = "=";
     private String selectedSupplierSearchByItem = "Company Id";
 
-
+    /* the function below initialises every menu box and menuItems to change in accordance with user's selections*/
     @FXML
     public void initialize_menu_boxes() {
         for (MenuItem searchByItem : ageMenuButton.getItems()) {
@@ -211,38 +215,10 @@ public class HelloController {
         }
     }
 
-    private void refreshTopProductByCategory(String category) {
-        TopProduct topProduct = db.getTopProductByCategory(category);
-        if (topProduct == null) {
-            topSalesProductByCategoryValue.setText("0 Sales");
-            topSalesProductByCategoryName.setText("No data");
-        } else {
-            topSalesProductByCategoryValue.setText(topProduct.getMax_quantity() + " Sales");
-            topSalesProductByCategoryName.setText(topProduct.getProduct_name());
-        }
-    }
 
-    private void refreshProductStatistics() {
-        refreshTopProductByCategory("");
-        TopProduct topProduct = db.getTopProduct();
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                if (topProduct == null) {
-                    topSalesProductValue.setText("0 Sales");
-                    topSalesProductName.setText("No data");
-                } else {
-                    topSalesProductValue.setText(topProduct.getMax_quantity() + " Sales");
-                    topSalesProductName.setText(topProduct.getProduct_name());
-                }
-            }
-        });
-    }
-
-    private void refreshTotalRevenue(){
-        totalRevenueValue.setText(db.getTotalRevenue()+" Euro");
-    }
-
+    /* Initialisation of table view and its columns to present database's tables. */
+    /* Instantiations of statistics tab functions */
+    /* Instantiations of database class which handles interactions with the database */
     @FXML
     public void initialize() {
         initialize_menu_boxes();
@@ -341,6 +317,7 @@ public class HelloController {
         onRefreshReceiptTableClicked();
     }
 
+    /* SUPPLIERS BUTTONS */
     @FXML
     protected void onAddSupplierClicked() {
         try {
@@ -409,6 +386,7 @@ public class HelloController {
         }
     }
 
+    /* PRODUCT BUTTONS */
     @FXML
     protected void onUpdateProductClicked() {
         try {
@@ -473,6 +451,7 @@ public class HelloController {
         }
     }
 
+    /* SALESMEN BUTTONS */
     @FXML
     protected void onUpdateSalesmanClicked() {
         try {
@@ -538,6 +517,7 @@ public class HelloController {
         }
     }
 
+    /* RECEIPTS BUTTONS */
     @FXML
     protected void onUpdateReceiptClicked() {
         try {
@@ -600,6 +580,7 @@ public class HelloController {
         }
     }
 
+    /* REFRESH OR SHOW ALL BUTTONS MANIPULATIONS */
     @FXML
     protected void onRefreshSuppliersTableClicked() {
         ObservableList<Supplier> supplierList;
@@ -628,12 +609,19 @@ public class HelloController {
         receiptTable.setItems(receiptList);
     }
 
+    /* Statistics' Function */
+    /* Tab statistics offers information relevant with the performance of the liquer store that */
+    /* respond to complex queries to the database. More specifically statistics tab offer info  */
+    /* relevant with top seller, best seller product and total revenue. This info is presented  */
+    /* by 5 cards. */
     @FXML
     protected void onTabSelectionChanged(Event event) {
         Tab selectedTab = (Tab) event.getTarget();
 
         if (selectedTab.getText().equals("Statistics") && selectedTab.isSelected()) {
             ArrayList<String> result;
+            refreshProductStatistics();
+            refreshTotalRevenue();
             result = db.topSellerbyRevenue();
 
             topRevenueLabel.setText(db.getTopRevenue() + " euro");
@@ -642,12 +630,10 @@ public class HelloController {
             for (String seller : result) {
                 Label sellerLabel = new Label(seller);
                 vBox.getChildren().add(sellerLabel);
-                System.out.println(seller);
             }
             Tooltip tooltip = new Tooltip();
             tooltip.setGraphic(vBox);
 
-            System.out.println();
             if (result.size() == 1) {
                 topSellerByRevenueName.setText(result.get(0));
             } else {
@@ -666,6 +652,20 @@ public class HelloController {
         }
     }
 
+    private void refreshTotalRevenue(){
+        totalRevenueValue.setText(db.getTotalRevenue()+" Euro");
+    }
+
+    @FXML
+    private void onFindTopProductByCategory() {
+        if (topProductCategoryField.getText().trim().length() > 0) {
+            refreshTopProductByCategory(topProductCategoryField.getText());
+        }
+    }
+
+    /* SEARCH FIELDS FOR SALESMAN, SUPPLIER AND PRODUCT */
+    /* Search for attributes like age or price is implemented with HBox that consists of a label */
+    /* a menu box( to select the comparator ) and an input field to specify the value of intrest */
     @FXML
     private void onSalesmanSearch() {
         ObservableList<Salesman> salesmanList;
@@ -751,10 +751,31 @@ public class HelloController {
         }
     }
 
-    @FXML
-    private void onFindTopProductByCategory() {
-        if (topProductCategoryField.getText().trim().length() > 0) {
-            refreshTopProductByCategory(topProductCategoryField.getText());
+    private void refreshTopProductByCategory(String category) {
+        TopProduct topProduct = db.getTopProductByCategory(category);
+        if (topProduct == null) {
+            topSalesProductByCategoryValue.setText("0 Sales");
+            topSalesProductByCategoryName.setText("No data");
+        } else {
+            topSalesProductByCategoryValue.setText(topProduct.getMax_quantity() + " Sales");
+            topSalesProductByCategoryName.setText(topProduct.getProduct_name());
         }
+    }
+
+    private void refreshProductStatistics() {
+        refreshTopProductByCategory("");
+        TopProduct topProduct = db.getTopProduct();
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                if (topProduct == null) {
+                    topSalesProductValue.setText("0 Sales");
+                    topSalesProductName.setText("No data");
+                } else {
+                    topSalesProductValue.setText(topProduct.getMax_quantity() + " Sales");
+                    topSalesProductName.setText(topProduct.getProduct_name());
+                }
+            }
+        });
     }
 }

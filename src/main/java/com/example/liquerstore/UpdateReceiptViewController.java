@@ -29,7 +29,7 @@ public class UpdateReceiptViewController {
             SalesmanIdTextField.setText(selectedReceipt.getS_id()+"");
             DateTextField.setText(selectedReceipt.getDate()+"");
             QuantityTextField.setText(selectedReceipt.getQuantity()+"");
-            TotalValueTextField.setText(selectedReceipt.getQuantity()+"");
+            TotalValueTextField.setText(selectedReceipt.getTotal_value()+"");
         }
     }
 
