@@ -1,4 +1,4 @@
-# liquer_store_database
+# liquor_store_database
 
 This repo has been implemented for the purpose of "System Base 2" course assignment.
 
