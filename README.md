@@ -4,7 +4,7 @@ This repo has been implemented for the purpose of "System Base 2" course assignm
 
 We have implemented a java application connected with a MySql database (via jdbc). The application has a user friendly interface that enables the user to execute basic 
 queries such as (addition, deletion, update) in order to interact with the Database. At the same time, the application executes complex queries to present several 
-statistics concerning the functionality of the liquer store(i.e. Total revenue, Top seller, Best seller product etc).
+statistics concerning the functionality of the liquor store(i.e. Total revenue, Top seller, Best seller product etc).
 
 The sales database consists of 4 tables and is presented below.
 ![image](https://user-images.githubusercontent.com/71487428/148544974-154c0f35-eb83-461d-a5a7-fd1e1aca400c.png)
@@ -42,7 +42,7 @@ The application executes basic and complex queries to interact the sales databas
 - Create a folder with name "Liquer_store"
 - Right click and <open in terminal>
 - Run >> git init .
-- Run >> git clone https://github.com/DimitraPanagiotou/liquer_store
+- Run >> git clone https://github.com/DimitraPanagiotou/liquor_store
 - Inside liquer_store_database_app extract ExecutableFolder.zip
 - Inside ExecutableFolder double click on final.bat
 
