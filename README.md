@@ -39,12 +39,11 @@ The application executes basic and complex queries to interact the sales databas
 
 ## Ιnstallation Ιnstructions
 
-- Create a folder with name "Liquer_store"
+- Create a folder with name "Liquor_store"
 - Right click and <open in terminal>
 - Run >> git init .
 - Run >> git clone https://github.com/DimitraPanagiotou/liquor_store
-- Inside liquer_store_database_app extract ExecutableFolder.zip
-- Inside ExecutableFolder double click on final.bat
+- Run main in HelloApplication from your IDE
 
 
 
